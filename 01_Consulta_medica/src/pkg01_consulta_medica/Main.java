@@ -4,6 +4,12 @@
  */
 package pkg01_consulta_medica;
 
+import igu.VistaAtenciones;
+import igu.VistaPrincipal;
+import persistencia.AtencionesModelo;
+import logica.AtencionControlador;
+import logica.VistaPricipalControlador;
+
 /**
  *
  * @author yonathanancheogonzalez
@@ -16,14 +22,14 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         // creamos la instancia de la vista
-        Vista_tabla vista_tabla = new Vista_tabla();
+        VistaAtenciones vistaAtenciones = new VistaAtenciones();
+        VistaPrincipal vistaPrincipal = new VistaPrincipal();
         // creamos la instancia del modelo
-        Atenciones_modelo atenciones_modelo = new Atenciones_modelo();
+        AtencionesModelo atencionesModelo = new AtencionesModelo();
         // creamos la instacia del controlador, este requiere pasar por parametro
         // una instancia de la vista y del controlador.
-        Atencion_controlador atencion_controlador = new Atencion_controlador(vista_tabla,atenciones_modelo);
-        
-        vista_tabla.set_visible(true);
+        AtencionControlador atencionControlador = new AtencionControlador(vistaAtenciones,vistaPrincipal, atencionesModelo);
+        VistaPricipalControlador vistaPricipalControlador = new VistaPricipalControlador(vistaPrincipal, vistaAtenciones);
     }
     
 }
