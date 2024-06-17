@@ -4,11 +4,9 @@
  */
 package pkg01_consulta_medica;
 
-import igu.VistaAtenciones;
-import igu.VistaPrincipal;
-import persistencia.AtencionesModelo;
-import logica.AtencionControlador;
-import logica.VistaPricipalControlador;
+import igu.*;
+import persistencia.*;
+import logica.*;
 
 /**
  *
@@ -24,12 +22,22 @@ public class Main {
         // creamos la instancia de la vista
         VistaAtenciones vistaAtenciones = new VistaAtenciones();
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
+        VistaPacientes vistaPacientes = new VistaPacientes();
+        VistaMedico vistaMedico = new VistaMedico();
+        VistaEspecialidades vistaEspecialidades = new VistaEspecialidades();
+        VistaDiagnosticos vistaDiagnosticos = new VistaDiagnosticos();
         // creamos la instancia del modelo
         AtencionesModelo atencionesModelo = new AtencionesModelo();
         // creamos la instacia del controlador, este requiere pasar por parametro
         // una instancia de la vista y del controlador.
         AtencionControlador atencionControlador = new AtencionControlador(vistaAtenciones,vistaPrincipal, atencionesModelo);
-        VistaPricipalControlador vistaPricipalControlador = new VistaPricipalControlador(vistaPrincipal, vistaAtenciones);
+        PacientesControlador pacientesControlador = new PacientesControlador(vistaPrincipal, vistaPacientes);
+        MedicoControlador medicoControlador = new MedicoControlador(vistaPrincipal, vistaMedico);
+        EspecialidadControlador especialidadControlador = new EspecialidadControlador(vistaPrincipal, vistaEspecialidades);
+        DiagnosticoControlador diagnosticoControlador = new DiagnosticoControlador(vistaPrincipal, vistaDiagnosticos);
+        VistaPricipalControlador vistaPricipalControlador = new VistaPricipalControlador(vistaPrincipal, 
+                vistaAtenciones,vistaPacientes, vistaMedico, vistaEspecialidades,
+                vistaDiagnosticos);
     }
     
 }
