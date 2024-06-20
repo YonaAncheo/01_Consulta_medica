@@ -27,7 +27,7 @@ public class VistaAtenciones {
     private DefaultTableModel tableModel;
 
     public VistaAtenciones() {
-        ventanaTabla = new JFrame("Consultas");
+        ventanaTabla = new JFrame("Atenciones");
         ventanaTabla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaTabla.setSize(400,400);
         
