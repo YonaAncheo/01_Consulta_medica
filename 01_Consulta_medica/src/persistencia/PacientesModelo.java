@@ -18,6 +18,27 @@ import logica.Paciente;
  * @author yonathanancheogonzalez
  */
 public class PacientesModelo {
+    
+    public List<Paciente> buscarPaciente(int id){
+        List<Paciente> pacientes = new ArrayList<>();
+        try (Connection conn = Conexion.getConnection()){
+            String sql = "SELECT * FROM `consulta_medica_epe2_app_java`.`pacientes`"
+                    + "WHERE `id_paciente`="+id;
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {                
+                Paciente paciente = new Paciente();
+                paciente.setId(resultSet.getInt("id_paciente"));
+                paciente.setNombrePaciente(resultSet.getString("nombre_pac"));
+                paciente.setFechaNacimiento(resultSet.getDate("fecha_nacimiento"));
+                pacientes.add(paciente);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pacientes;
+    }
     public void agregarPaciente(int id, String nombrePaciente, String fechaNacimiento){
         try (Connection conn = Conexion.getConnection()){
             String sql = "INSERT INTO `consulta_medica_epe2_app_java`.`pacientes` "
@@ -28,6 +49,7 @@ public class PacientesModelo {
             statement.setString(2, nombrePaciente);
             statement.setString(3, fechaNacimiento);
             statement.execute();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +58,7 @@ public class PacientesModelo {
     public void borrarPaciente(int id){
         try (Connection conn = Conexion.getConnection()){
             String sql = "DELETE FROM `consulta_medica_epe2_app_java`.`pacientes` "
-                    + "WHERE id_paciente=?";
+                    + "WHERE id_paciente = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             statement.execute();
@@ -68,7 +90,7 @@ public class PacientesModelo {
     public void actualizarPaciente(int id, String nombrePaciente, String fechaNacimiento){
         try (Connection conn = Conexion.getConnection()){
             String sql = "UPDATE `consulta_medica_epe2_app_java`.`pacientes` "
-                    + "SET nombre = ?, fecha_nacimiento = ? "
+                    + "SET nombre_pac = ?, fecha_nacimiento = ? "
                     + "WHERE id_paciente = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, nombrePaciente);

@@ -6,6 +6,7 @@ package igu;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -132,6 +133,7 @@ public class VistaPacientes {
         }
     }
     
+    
     public void resetInformacion(){
         for (JTextField txtField : txtFields) {
             txtField.setText("");
@@ -140,9 +142,11 @@ public class VistaPacientes {
     }
     
     public Paciente paciente(){
-        //int id = t
-        //Paciente paciente = new Paciente(0, nombrePaciente, FechaNacimiento)
-        return null;
+        int id = Integer.parseInt(txtFields[0].getText());
+        String nombrePaciente = txtFields[1].getText();
+        Date fechaNacimiento = new Date(txtFields[2].getText());
+        Paciente paciente = new Paciente(id, nombrePaciente, fechaNacimiento);
+        return paciente;
     }
     
     public void setVisible(boolean opcion){

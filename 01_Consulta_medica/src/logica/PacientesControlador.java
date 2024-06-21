@@ -22,7 +22,8 @@ public class PacientesControlador {
     public PacientesControlador() {
     }
 
-    public PacientesControlador(VistaPrincipal vistaPrincipal, VistaPacientes vistaPacientes, PacientesModelo pacienteM) {
+    public PacientesControlador(VistaPrincipal vistaPrincipal, 
+            VistaPacientes vistaPacientes, PacientesModelo pacienteM) {
         this.vistaPrincipal = vistaPrincipal;
         this.vistaPacientes = vistaPacientes;
         this.pacienteM = pacienteM;
@@ -31,11 +32,20 @@ public class PacientesControlador {
         this.vistaPacientes.getBtnListar().addActionListener(e -> listarPacientes());
         this.vistaPacientes.getBtnSalir().addActionListener(e -> salir());
         this.vistaPacientes.getBtnNorte()[0].addActionListener(e -> agregarPaciente());
+        this.vistaPacientes.getBtnNorte()[1].addActionListener(e -> actualizarPaciente());
+        this.vistaPacientes.getBtnNorte()[2].addActionListener(e -> buscarPaciente());
         this.vistaPacientes.getBtnNorte()[3].addActionListener(e -> borrarPaciente());
     }
     
     public void listarPacientes(){
         vistaPacientes.mostrarInformacion(pacienteM.listarPacientes());
+    }
+    
+    public void buscarPaciente(){
+        JOptionPane.showMessageDialog(null, "boton correspondiente al numero "+vistaPacientes.getBtnNorte()[2].getText());
+        int id = Integer.parseInt(vistaPacientes.getTxtFields()[0].getText());
+        vistaPacientes.mostrarInformacion(pacienteM.buscarPaciente(id));
+        
     }
 
     public void agregarPaciente(){
@@ -43,8 +53,9 @@ public class PacientesControlador {
         int id = Integer.parseInt(vistaPacientes.getTxtFields()[0].getText());
         String nombrePaciente = vistaPacientes.getTxtFields()[1].getText();
         String fechaNacimiento = vistaPacientes.getTxtFields()[2].getText();
-        pacienteM.agregarPaciente(id, nombrePaciente, fechaNacimiento);
-        JOptionPane.showMessageDialog(null, "Paciente: "+ nombrePaciente +", Agregado.");
+        //paciente = vistaPacientes.paciente();
+        pacienteM.agregarPaciente(id, nombrePaciente,fechaNacimiento);
+        JOptionPane.showMessageDialog(null, "se ha agregado paciente: "+nombrePaciente);
         listarPacientes();
     }
     
@@ -54,7 +65,7 @@ public class PacientesControlador {
         String nombre = vistaPacientes.getTxtFields()[1].getText();
         String fecha = vistaPacientes.getTxtFields()[2].getText();
         pacienteM.actualizarPaciente(id, nombre, fecha);
-        listarPacientes();
+        buscarPaciente();
     }
     
     public void borrarPaciente(){

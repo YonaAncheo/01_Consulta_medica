@@ -13,15 +13,15 @@ import java.util.Date;
 public class Paciente {
     private int id;
     private String nombrePaciente;
-    private Date FechaNacimiento;
+    private Date fechaNacimiento;
 
     public Paciente() {
     }
 
-    public Paciente(int id, String nombrePaciente, Date FechaNacimiento) {
+    public Paciente(int id, String nombrePaciente, Date fechaNacimiento) {
         this.id = id;
         this.nombrePaciente = nombrePaciente;
-        this.FechaNacimiento = FechaNacimiento;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getId() {
@@ -41,12 +41,18 @@ public class Paciente {
     }
 
     public Date getFechaNacimiento() {
-        return FechaNacimiento;
+        return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date FechaNacimiento) {
-        this.FechaNacimiento = FechaNacimiento;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "id=" + id + ", nombrePaciente=" + nombrePaciente + ", fechaNacimiento=" + fechaNacimiento + '}';
+    }
+    
     
     
 }

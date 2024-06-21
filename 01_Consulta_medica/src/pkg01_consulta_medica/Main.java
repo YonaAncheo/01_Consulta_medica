@@ -19,6 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         // creamos la instancia de la vista
         VistaAtenciones vistaAtenciones = new VistaAtenciones();
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
@@ -26,9 +27,11 @@ public class Main {
         VistaMedico vistaMedico = new VistaMedico();
         VistaEspecialidades vistaEspecialidades = new VistaEspecialidades();
         VistaDiagnosticos vistaDiagnosticos = new VistaDiagnosticos();
+        
         // creamos la instancia del modelo
         AtencionesModelo atencionesModelo = new AtencionesModelo();
         PacientesModelo pacientesModelo = new PacientesModelo();
+        
         // creamos la instacia del controlador, este requiere pasar por parametro
         // una instancia de la vista y del controlador.
         AtencionControlador atencionControlador = new AtencionControlador(vistaAtenciones,vistaPrincipal, atencionesModelo);
